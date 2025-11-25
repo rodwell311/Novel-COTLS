@@ -125,20 +125,23 @@ footer {
   font-size: 0.8em;
 }
 
-/* Logo Styles */
-.site-logo {
-  max-width: 150px;
+/* Header Image Styles */
+.site-header-image {
+  max-width: 100%;
   height: auto;
   margin-bottom: 20px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.site-logo-small {
-  max-width: 100px;
+.site-header-image-small {
+  max-width: 150px;
   height: auto;
   margin-bottom: 10px;
+  border-radius: 4px;
 }
 
 .logo-container {

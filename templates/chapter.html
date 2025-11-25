@@ -20,7 +20,7 @@
             <a href="{{ url_for('index') }}" class="back-link">&larr; Kembali ke Daftar</a>
             {% endif %}
             <div class="logo-container">
-                <img src="{% if is_static %}../static/logo.png{% else %}{{ url_for('static', filename='logo.png') }}{% endif %}" alt="Logo" class="site-logo-small">
+                <img src="{% if is_static %}../static/header.png{% else %}{{ url_for('static', filename='header.png') }}{% endif %}" alt="Header Image" class="site-header-image-small">
             </div>
             <h1>{{ chapter.title }}</h1>
         </header>
