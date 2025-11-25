@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chronicles of the Lazy Sovereign</title>
+    {% if is_static %}
+    <link rel="stylesheet" href="static/style.css">
+    {% else %}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    {% endif %}
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="{% if is_static %}static/logo.png{% else %}{{ url_for('static', filename='logo.png') }}{% endif %}" alt="Logo" class="site-logo">
+        <h1>Chronicles of the Lazy Sovereign</h1>
+        <p class="subtitle">Baca Novel Terjemahan Bahasa Indonesia</p>
+      </header>
+
+      <main>
+        <div class="chapter-list">
+          <h2>Daftar Chapter</h2>
+          {% if chapters %}
+          <ul>
+            {% for chapter in chapters %}
+            <li>
+                {% if is_static %}
+                <a href="chapter/{{ chapter.id }}.html">
+                {% else %}
+                <a href="{{ url_for('chapter', chapter_id=chapter.id) }}">
+                {% endif %}
+                    <span class="chapter-num">Chapter {{ chapter.id }}</span>
+                    <span class="chapter-title">{{ chapter.title }}</span>
+                </a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>Belum ada chapter yang tersedia.</p>
+          {% endif %}
+        </div>
+      </main>
+
+      <footer>
+        <p>&copy; 2024 Novel Reader</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ chapter.title }} - Chronicles of the Lazy Sovereign</title>
+    {% if is_static %}
+    <link rel="stylesheet" href="../static/style.css">
+    {% else %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% endif %}
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container reading-mode">
+        <header>
+            {% if is_static %}
+            <a href="../index.html" class="back-link">&larr; Kembali ke Daftar</a>
+            {% else %}
+            <a href="{{ url_for('index') }}" class="back-link">&larr; Kembali ke Daftar</a>
+            {% endif %}
+            <div class="logo-container">
+                <img src="{% if is_static %}../static/logo.png{% else %}{{ url_for('static', filename='logo.png') }}{% endif %}" alt="Logo" class="site-logo-small">
+            </div>
+            <h1>{{ chapter.title }}</h1>
+        </header>
+        
+        <nav class="chapter-nav top">
+            {% if prev_chapter %}
+                {% if is_static %}
+                <a href="{{ prev_chapter.id }}.html" class="nav-btn prev">Sebelumnya</a>
+                {% else %}
+                <a href="{{ url_for('chapter', chapter_id=prev_chapter.id) }}" class="nav-btn prev">Sebelumnya</a>
+                {% endif %}
+            {% else %}
+                <span class="nav-btn disabled">Sebelumnya</span>
+            {% endif %}
+            
+            {% if next_chapter %}
+                {% if is_static %}
+                <a href="{{ next_chapter.id }}.html" class="nav-btn next">Selanjutnya</a>
+                {% else %}
+                <a href="{{ url_for('chapter', chapter_id=next_chapter.id) }}" class="nav-btn next">Selanjutnya</a>
+                {% endif %}
+            {% else %}
+                <span class="nav-btn disabled">Selanjutnya</span>
+            {% endif %}
+        </nav>
+        
+        <main class="chapter-content">
+            {{ chapter.content | replace('\n', '<br>') | safe }}
+        </main>
+        
+        <nav class="chapter-nav bottom">
+            {% if prev_chapter %}
+                {% if is_static %}
+                <a href="{{ prev_chapter.id }}.html" class="nav-btn prev">Sebelumnya</a>
+                {% else %}
+                <a href="{{ url_for('chapter', chapter_id=prev_chapter.id) }}" class="nav-btn prev">Sebelumnya</a>
+                {% endif %}
+            {% else %}
+                <span class="nav-btn disabled">Sebelumnya</span>
+            {% endif %}
+            
+            {% if next_chapter %}
+                {% if is_static %}
+                <a href="{{ next_chapter.id }}.html" class="nav-btn next">Selanjutnya</a>
+                {% else %}
+                <a href="{{ url_for('chapter', chapter_id=next_chapter.id) }}" class="nav-btn next">Selanjutnya</a>
+                {% endif %}
+            {% else %}
+                <span class="nav-btn disabled">Selanjutnya</span>
+            {% endif %}
+        </nav>
+        
+        <footer>
+            <p>&copy; 2024 Novel Reader</p>
+        </footer>
+    </div>
+</body>
+</html>
