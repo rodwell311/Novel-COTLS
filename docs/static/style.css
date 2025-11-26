@@ -100,38 +100,84 @@ h1 {
   font-size: 0.9em;
 }
 
-/* Chapter List */
+/* Chapter List - Modern Grid Design */
 .chapter-list ul {
   list-style: none;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
 }
 
 .chapter-list li {
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 
 .chapter-list a {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background-color: var(--card-bg);
-  border-radius: 8px;
+  flex-direction: column;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--card-bg) 0%, #2a2a2a 100%);
+  border-radius: 12px;
   text-decoration: none;
   color: var(--text-color);
-  transition: var(--transition);
-  border-left: 3px solid transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(187, 134, 252, 0.1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.chapter-list a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), #ff6b9d);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .chapter-list a:hover {
-  background-color: var(--hover-bg);
-  transform: translateX(5px);
-  border-left-color: var(--accent-color);
+  background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 24px rgba(187, 134, 252, 0.3);
+}
+
+.chapter-list a:hover::before {
+  transform: scaleX(1);
 }
 
 .chapter-num {
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 0.85em;
   color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chapter-num::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-color);
+}
+
+.chapter-title {
+  font-size: 1.05em;
+  line-height: 1.4;
+  color: #e8e8e8;
+  font-weight: 400;
 }
 
 /* Reading Mode */
